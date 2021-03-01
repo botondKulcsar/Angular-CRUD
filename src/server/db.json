@@ -1,5 +1,20 @@
 {
-    "users": [
-
-    ]
+  "users": [
+    {
+      "name": "Puca Luca",
+      "username": "pluca",
+      "email": "plucs@plucs.hu",
+      "password": "pluscspu",
+      "ageGroup": "18 - 35",
+      "id": 1
+    },
+    {
+      "name": "Palya Bea",
+      "username": "beacska",
+      "email": "bpalya@gmail.com",
+      "password": "fasdf;l;l",
+      "ageGroup": "36 - 59",
+      "id": 2
+    }
+  ]
 }

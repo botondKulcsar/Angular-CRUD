@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { FormHttpService } from './../../services/form-http.service';
+import { User } from './../../model/user';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
 
@@ -11,7 +14,7 @@ export class UserComponent implements OnInit {
   userForm: FormGroup = new FormGroup({});
   agegroups: string[] = ['18 - 35', '36 - 59', '60 and above' ];
 
-  constructor() {}
+  constructor(private formHttpService: FormHttpService, private router: Router) {}
     
 
   ngOnInit(): void {
@@ -31,8 +34,17 @@ export class UserComponent implements OnInit {
   get ageGroup() { return this.userForm.get('ageGroup'); }
 
   onSubmit() {
-    const user = this.userForm.value;
+    const user: User = this.userForm.value;
     console.log(user);
+    this.formHttpService.saveUser(user).subscribe(
+      (data:any) => {
+        console.log(user.name,' saved with id: ',1);
+        this.userForm.reset();
+        this.router.navigate(['user-list'])
+      },
+      err => console.log(err),
+      () => {}
+    );
   }
 
 }
