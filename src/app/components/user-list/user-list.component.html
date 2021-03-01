@@ -1,1 +1,24 @@
-<p>user-list works!</p>
+<section>
+    <table>
+        <thead>
+            <th>Nr.</th>
+            <th>Name</th>
+            <th>E-mail</th>
+            <th>Age group</th>
+            <th>Username</th>
+            <th>
+                <button *ngIf="!showPass" (click)="revealPasswords()">Show passwords</button>
+                <button *ngIf="showPass" (click)="revealPasswords()">Hide passwords</button>
+            </th>
+        </thead>
+        <tr *ngFor="let user of userList; let i = index;">
+            <td>{{i + 1}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.ageGroup}}</td>
+            <td>{{user.username}}</td>
+            <td *ngIf="showPass">{{user.password}}</td>
+            <td><button (click)="updateUser(user.id)">Update</button></td>
+        </tr>
+    </table>
+</section>

@@ -15,6 +15,22 @@
       "password": "fasdf;l;l",
       "ageGroup": "36 - 59",
       "id": 2
+    },
+    {
+      "name": "Tum Tim",
+      "username": "fasasdf",
+      "email": "fas@fasd.com",
+      "password": ";;asdfasf",
+      "ageGroup": "60 and above",
+      "id": 3
+    },
+    {
+      "name": "Anyad Aszunyogok",
+      "username": "pitsaja",
+      "email": "imel@cimje.te",
+      "password": "jelszava",
+      "ageGroup": "18 - 35",
+      "id": 4
     }
   ]
 }
