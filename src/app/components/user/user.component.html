@@ -4,35 +4,35 @@
 
         <label for="name">Name</label>
         <input type="text" formControlName="name" id="name" name="name">
-        <div *ngIf="userForm.get('name')">
-            <small *ngIf="userForm.get('name').errors?.pattern || userForm.get('name').errors?.required">Input your first and last name. Make sure they start with capital letters!</small>
-        </div>
+
+        <small *ngIf="(userForm.get('name').errors?.pattern || userForm.get('name').errors?.required) && userForm.get('name')?.dirty">Input your first and last name. Make sure they start with capital letters!</small>
+
 
         <label for="username">Username</label>
         <input type="text" formControlName="username" name="username" id="username">
-        <div *ngIf="userForm.get('username')">
-            <small *ngIf="userForm.get('username').errors?.required || userForm.get('username').errors?.minlength || userForm.get('username').errors?.maxlength">invalid username</small>
-        </div>
+
+        <small *ngIf="(userForm.get('username').errors?.required || userForm.get('username').errors?.minlength || userForm.get('username').errors?.maxlength) && userForm.get('username')?.dirty">invalid username</small>
+
 
         <label for="email">Email</label>
         <input type="email" formControlName="email" id="email" name="email">
-        <div *ngIf="userForm.get('email')">
-            <small *ngIf="(userForm.get('email').errors?.email || userForm.get('email').errors?.required)">invalid email</small>
-        </div>
+
+        <small *ngIf="(userForm.get('email').errors?.email || userForm.get('email').errors?.required) && userForm.controls.email?.dirty">invalid email</small>
+
 
         <label for="password">Password</label>
         <input type="password" formControlName="password" name="password" id="password">
-        <div *ngIf="userForm.get('password')">
-            <small *ngIf="userForm.get('password').errors?.required || userForm.get('password').errors?.minlength || userForm.get('password').errors?.maxlength">invalid password</small>
-        </div>
+
+        <small *ngIf="userForm.controls.password?.dirty && (userForm.get('password').errors?.required || userForm.get('password').errors?.minlength || userForm.get('password').errors?.maxlength)">invalid password</small>
+
 
         <label for="ageGroup">Age group</label>
         <select name="ageGroup" id="ageGroup" formControlName="ageGroup">
             <option *ngFor="let group of ageGroup " [value]="group">{{group}}</option>
         </select>
-        <div *ngIf="userForm.get('ageGroup')">
-            <small *ngIf="userForm.get('ageGroup').errors?.required">please select an age group!</small>
-        </div>
+
+        <small *ngIf="userForm.controls.ageGroup?.touched &&  userForm.get('ageGroup').errors?.required">please select an age group!</small>
+
 
         <button [disabled]="userForm.invalid" type="submit">Submit</button>
 
