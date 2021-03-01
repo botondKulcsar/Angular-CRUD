@@ -5,33 +5,33 @@
         <label for="name">Name</label>
         <input type="text" formControlName="name" id="name" name="name">
 
-        <small *ngIf="(userForm.get('name').errors?.pattern || userForm.get('name').errors?.required) && userForm.get('name')?.dirty">Input your first and last name. Make sure they start with capital letters!</small>
+        <small *ngIf="(name.errors?.pattern || name.errors?.required) && name?.dirty">Input your first and last name. Make sure they start with capital letters!</small>
 
 
         <label for="username">Username</label>
         <input type="text" formControlName="username" name="username" id="username">
 
-        <small *ngIf="(userForm.get('username').errors?.required || userForm.get('username').errors?.minlength || userForm.get('username').errors?.maxlength) && userForm.get('username')?.dirty">invalid username</small>
+        <small *ngIf="(username.errors?.required || username.errors?.minlength || username.errors?.maxlength) && username?.dirty">invalid username</small>
 
 
         <label for="email">Email</label>
         <input type="email" formControlName="email" id="email" name="email">
 
-        <small *ngIf="(userForm.get('email').errors?.email || userForm.get('email').errors?.required) && userForm.controls.email?.dirty">invalid email</small>
+        <small *ngIf="(email.errors?.email || email.errors?.required) && email?.dirty">invalid email</small>
 
 
         <label for="password">Password</label>
         <input type="password" formControlName="password" name="password" id="password">
 
-        <small *ngIf="userForm.controls.password?.dirty && (userForm.get('password').errors?.required || userForm.get('password').errors?.minlength || userForm.get('password').errors?.maxlength)">invalid password</small>
+        <small *ngIf="password?.dirty && (password.errors?.required || password.errors?.minlength || password.errors?.maxlength)">invalid password</small>
 
 
         <label for="ageGroup">Age group</label>
         <select name="ageGroup" id="ageGroup" formControlName="ageGroup">
-            <option *ngFor="let group of ageGroup " [value]="group">{{group}}</option>
+            <option *ngFor="let group of agegroups" [value]="group">{{group}}</option>
         </select>
 
-        <small *ngIf="userForm.controls.ageGroup?.touched &&  userForm.get('ageGroup').errors?.required">please select an age group!</small>
+        <small *ngIf="ageGroup?.touched &&  ageGroup.errors?.required">please select an age group!</small>
 
 
         <button [disabled]="userForm.invalid" type="submit">Submit</button>
