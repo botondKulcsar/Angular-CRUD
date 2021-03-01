@@ -1,0 +1,35 @@
+section {
+    margin: 3em auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    padding: 1em;
+    text-align: center;
+    box-shadow: 2px 4px 10px rgb(159, 152, 165);
+}
+
+input,
+label,
+select,
+small,
+button {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+label,
+button {
+    margin-top: .7em;
+}
+
+label:first-of-type {
+    margin-top: 0;
+}
+
+button {
+    margin-top: 1em;
+}

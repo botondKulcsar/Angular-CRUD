@@ -1,30 +1,40 @@
 <section>
 
-    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" autocomplete="off">
 
         <label for="name">Name</label>
         <input type="text" formControlName="name" id="name" name="name">
-        <small>invalid name</small>
+        <div *ngIf="userForm.get('name')">
+            <small *ngIf="userForm.get('name').errors?.pattern || userForm.get('name').errors?.required">Input your first and last name. Make sure they start with capital letters!</small>
+        </div>
 
         <label for="username">Username</label>
         <input type="text" formControlName="username" name="username" id="username">
-        <small>invalid username</small>
+        <div *ngIf="userForm.get('username')">
+            <small *ngIf="userForm.get('username').errors?.required || userForm.get('username').errors?.minlength || userForm.get('username').errors?.maxlength">invalid username</small>
+        </div>
 
         <label for="email">Email</label>
         <input type="email" formControlName="email" id="email" name="email">
-        <small>invalid email</small>
+        <div *ngIf="userForm.get('email')">
+            <small *ngIf="(userForm.get('email').errors?.email || userForm.get('email').errors?.required)">invalid email</small>
+        </div>
 
         <label for="password">Password</label>
         <input type="password" formControlName="password" name="password" id="password">
-        <small>invalid password</small>
+        <div *ngIf="userForm.get('password')">
+            <small *ngIf="userForm.get('password').errors?.required || userForm.get('password').errors?.minlength || userForm.get('password').errors?.maxlength">invalid password</small>
+        </div>
 
         <label for="ageGroup">Age group</label>
         <select name="ageGroup" id="ageGroup" formControlName="ageGroup">
-            <option  *ngFor="let group of ageGroup" [value]="group">{{group}}</option>
+            <option *ngFor="let group of ageGroup " [value]="group">{{group}}</option>
         </select>
-        <small>please select an age group!</small>
+        <div *ngIf="userForm.get('ageGroup')">
+            <small *ngIf="userForm.get('ageGroup').errors?.required">please select an age group!</small>
+        </div>
 
-        <button type="submit">Submit</button>
+        <button [disabled]="userForm.invalid" type="submit">Submit</button>
 
     </form>
 
