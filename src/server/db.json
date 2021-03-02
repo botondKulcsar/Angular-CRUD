@@ -5,7 +5,7 @@
       "username": "fasasdf",
       "email": "fas@fasd.com",
       "password": ";;asdfasf",
-      "ageGroup": "60 and above",
+      "ageGroup": "36 - 59",
       "id": 3
     },
     {
@@ -13,8 +13,32 @@
       "username": "pitsaja",
       "email": "imel@cimje.te",
       "password": "jelszava",
-      "ageGroup": "18 - 35",
+      "ageGroup": "36 - 59",
       "id": 4
+    },
+    {
+      "name": "Fel Vagy",
+      "username": "maris",
+      "email": "frissitve@remeljuk.na",
+      "password": "fasdfasdf",
+      "ageGroup": "18 - 35",
+      "id": 5
+    },
+    {
+      "name": "Grrrr Mrr",
+      "username": "ahatosgy",
+      "email": "frissitve@remeljuk.na",
+      "password": "fasdfasdf",
+      "ageGroup": "60 and above",
+      "id": 6
+    },
+    {
+      "name": "Botond Kulcsar",
+      "username": "kecss",
+      "email": "bkulcsar@gmx.com",
+      "password": "ujjelszo",
+      "ageGroup": "36 - 59",
+      "id": 7
     }
   ]
 }

@@ -5,10 +5,14 @@ section {
     align-items: center;
 }
 
-form {
+.form-holder {
     padding: 1em;
     text-align: center;
     box-shadow: 2px 4px 10px rgb(159, 152, 165);
+}
+
+form {
+    text-align: center;
 }
 
 input,
@@ -32,4 +36,8 @@ label:first-of-type {
 
 button {
     margin-top: 1em;
+}
+
+small {
+    color: crimson;
 }

@@ -20,8 +20,12 @@ export class FormHttpService {
     return this.http.get<any>(this.BASE_URL + '/users')
   }
 
-  updateUser(user: User, id: number):Observable<any> {
+  updateUser(user: User, id: number|string):Observable<any> {
     return this.http.put<any>(this.BASE_URL + '/users/' + id, user);
+  }
+
+  getUserById(id:number|string) {
+    return this.http.get<any>(this.BASE_URL + '/users/' + id);
   }
 
   deleteUser(id:number):Observable<any> {

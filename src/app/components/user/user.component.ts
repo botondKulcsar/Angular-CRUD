@@ -13,8 +13,8 @@ export class UserComponent implements OnInit {
 
   userForm: FormGroup = new FormGroup({});
   agegroups: string[] = ['18 - 35', '36 - 59', '60 and above' ];
-  userToUpdate: User = {id: 0, name: '', username: '', email: '',password: '' , ageGroup: ''};
-
+  userToUpdate: User = { name: '', username: '', email: '',password: '' , ageGroup: ''};
+  userIdToUpdate: number|string = 0;
   constructor(private formHttpService: FormHttpService, private router: Router, private activatedRoute: ActivatedRoute) {}
     
 
@@ -29,12 +29,28 @@ export class UserComponent implements OnInit {
 
     this.activatedRoute.paramMap.subscribe(
       params => {
-        const userId = params.get('id');
+        const userId: any = params.get('id');
         console.log(userId);
+        this.formHttpService.getUserById(userId).subscribe(
+          (user: any) => {
+            if(user.id) {
+              this.userForm.patchValue(user);
+              this.userIdToUpdate = user.id;
+            } else {
+              console.log('no user with id: ', user.id, ' can be found!')
+            }
+          },
+          err => console.log(err),
+          () => {}
+        )
       },
       err => console.log(err),
       () => {}
     )
+  }
+
+  clear() {
+    this.userForm.reset();
   }
 
   get name() { return this.userForm.get('name'); }
@@ -45,7 +61,18 @@ export class UserComponent implements OnInit {
 
   onSubmit() {
     const user: User = this.userForm.value;
-    console.log(user);
+    if (this.userIdToUpdate) {
+      this.formHttpService.updateUser(user, this.userIdToUpdate).subscribe(
+        () => {
+          console.log('user with id: ', this.userIdToUpdate, 'updated!');
+          this.userIdToUpdate = 0;
+          this.userForm.reset();
+          this.router.navigate(['user-list'])
+        }
+      )
+      return;
+    }
+   
     this.formHttpService.saveUser(user).subscribe(
       (data:any) => {
         console.log(user.name,' saved with id: ',1);

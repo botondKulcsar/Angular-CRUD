@@ -1,45 +1,47 @@
 <section>
+    <div class="form-holder">
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()" autocomplete="off">
 
-    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" autocomplete="off">
+            <label for="name">Name</label>
+            <input type="text" formControlName="name" id="name" name="name">
 
-        <label for="name">Name</label>
-        <input type="text" formControlName="name" id="name" name="name">
+            <!-- <small *ngIf="(name.errors?.pattern || name.errors?.required) && name?.dirty">Input your first and last name. Make sure they start with capital letters!</small> -->
+            <small *ngIf="name.errors?.pattern  && name?.dirty">Only first and last names are allowed.<br> They must begin with capital letter<br> and must contain only latin characters</small>
+            <small *ngIf="name.errors?.required && name?.dirty">First and last names are required</small>
 
-        <!-- <small *ngIf="(name.errors?.pattern || name.errors?.required) && name?.dirty">Input your first and last name. Make sure they start with capital letters!</small> -->
-        <small *ngIf="name.errors?.pattern  && name?.dirty">Only first and last names are allowed. They must begin with capital letter and must contain only latin characters</small>
-        <small *ngIf="name.errors?.required && name?.dirty">First and last names are required</small>
+            <label for="username">Username</label>
+            <input type="text" formControlName="username" name="username" id="username">
 
-        <label for="username">Username</label>
-        <input type="text" formControlName="username" name="username" id="username">
-
-        <small *ngIf="username.errors?.maxlength && username?.dirty">Max length is 8 characters </small>
-        <small *ngIf="username.errors?.required && username?.dirty">Username is required</small>
-        <small *ngIf="username.errors?.minlength  && username?.dirty">Min length is 5 characters</small>
+            <small *ngIf="username.errors?.maxlength && username?.dirty">Max length is 8 characters </small>
+            <small *ngIf="username.errors?.required && username?.dirty">Username is required</small>
+            <small *ngIf="username.errors?.minlength  && username?.dirty">Min length is 5 characters</small>
 
 
-        <label for="email">Email</label>
-        <input type="email" formControlName="email" id="email" name="email">
+            <label for="email">Email</label>
+            <input type="email" formControlName="email" id="email" name="email">
 
-        <small *ngIf="email.errors?.email  && email?.dirty">invalid email</small>
-        <small *ngIf="email.errors?.required && email?.dirty">Email is required</small>
+            <small *ngIf="email.errors?.email  && email?.dirty">invalid email</small>
+            <small *ngIf="email.errors?.required && email?.dirty">Email is required</small>
 
-        <label for="password">Password</label>
-        <input type="password" formControlName="password" name="password" id="password">
+            <label for="password">Password</label>
+            <input type="password" formControlName="password" name="password" id="password">
 
-        <small *ngIf="password?.dirty &&   password.errors?.maxlength">Password must not exceed 12 characters</small>
-        <small *ngIf="password?.dirty && password.errors?.required">Password is required</small>
-        <small *ngIf="password.errors?.minlength && password?.dirty">Your password must contain at least 8 characters</small>
+            <small *ngIf="password?.dirty &&   password.errors?.maxlength">Password must not exceed 12 characters</small>
+            <small *ngIf="password?.dirty && password.errors?.required">Password is required</small>
+            <small *ngIf="password.errors?.minlength && password?.dirty">Your password must contain at least 8 characters</small>
 
-        <label for="ageGroup">Age group</label>
-        <select name="ageGroup" id="ageGroup" formControlName="ageGroup">
+            <label for="ageGroup">Age group</label>
+            <select name="ageGroup" id="ageGroup" formControlName="ageGroup">
             <option *ngFor="let group of agegroups" [value]="group">{{group}}</option>
         </select>
 
-        <small *ngIf="ageGroup?.touched &&  ageGroup.errors?.required">please select an age group!</small>
+            <small *ngIf="ageGroup?.touched &&  ageGroup.errors?.required">please select an age group!</small>
 
 
-        <button [disabled]="userForm.invalid" type="submit">Submit</button>
+            <button [disabled]="userForm.invalid" type="submit">Submit</button>
 
-    </form>
+        </form>
+        <button (click)="clear()">Clear inputs</button>
+    </div>
 
 </section>

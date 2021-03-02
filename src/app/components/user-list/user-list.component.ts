@@ -22,7 +22,6 @@ export class UserListComponent implements OnInit {
     this.formHttpService.getUsers().subscribe(
       (data:any) => {
         this.userList = data;
-        console.log(this.userList);
       },
       err => console.log(err),
       () => {}
@@ -34,11 +33,12 @@ export class UserListComponent implements OnInit {
   }
 
   updateUser(id:any) {
-    console.log(id);
     this.router.navigate(['user',id])
   }
 
   deleteUser(id:any) {
+    const iAmSure = confirm('Are you sure you want to DELETE this user?')
+    if(iAmSure) {
     this.formHttpService.deleteUser(id).subscribe(
       () => {
         console.log('user with id: ', id, ' has been permanently removed');
@@ -46,7 +46,7 @@ export class UserListComponent implements OnInit {
       },
       err => console.log(err),
       () => {}
-    )
+    )}
   }
 
 }
