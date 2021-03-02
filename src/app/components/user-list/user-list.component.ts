@@ -15,6 +15,10 @@ export class UserListComponent implements OnInit {
   constructor(private formHttpService: FormHttpService, private router: Router) { }
 
   ngOnInit(): void {
+    this.showUsers();
+  }
+
+  showUsers() {
     this.formHttpService.getUsers().subscribe(
       (data:any) => {
         this.userList = data;
@@ -32,6 +36,17 @@ export class UserListComponent implements OnInit {
   updateUser(id:any) {
     console.log(id);
     this.router.navigate(['user',id])
+  }
+
+  deleteUser(id:any) {
+    this.formHttpService.deleteUser(id).subscribe(
+      () => {
+        console.log('user with id: ', id, ' has been permanently removed');
+        this.showUsers()
+      },
+      err => console.log(err),
+      () => {}
+    )
   }
 
 }

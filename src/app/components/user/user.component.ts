@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormHttpService } from './../../services/form-http.service';
 import { User } from './../../model/user';
 import { Component, OnInit } from '@angular/core';
@@ -13,8 +13,9 @@ export class UserComponent implements OnInit {
 
   userForm: FormGroup = new FormGroup({});
   agegroups: string[] = ['18 - 35', '36 - 59', '60 and above' ];
+  userToUpdate: User = {id: 0, name: '', username: '', email: '',password: '' , ageGroup: ''};
 
-  constructor(private formHttpService: FormHttpService, private router: Router) {}
+  constructor(private formHttpService: FormHttpService, private router: Router, private activatedRoute: ActivatedRoute) {}
     
 
   ngOnInit(): void {
@@ -25,6 +26,15 @@ export class UserComponent implements OnInit {
       password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(12)]),
       ageGroup: new FormControl('', Validators.required)
     });
+
+    this.activatedRoute.paramMap.subscribe(
+      params => {
+        const userId = params.get('id');
+        console.log(userId);
+      },
+      err => console.log(err),
+      () => {}
+    )
   }
 
   get name() { return this.userForm.get('name'); }
